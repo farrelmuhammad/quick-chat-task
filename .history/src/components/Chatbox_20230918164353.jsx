@@ -4,23 +4,23 @@ const Chatbox = () => {
   const [groupChats] = useState([
     {
       id: 1,
-      name: "Day 6",
-      lastSender: "Park Hyung Jae",
+      name: "Group Chat 1",
+      lastSender: "John Smith",
       lastMessage: "Hai, apa kabar?",
       lastMessageDate: "2023-09-17T10:30:00Z",
       read: false,
     },
     {
       id: 2,
-      name: "Twice",
-      lastSender: "Im Na Yeon",
+      name: "Group Chat 2",
+      lastSender: "Hanni Pham",
       lastMessage: "Sudah siap untuk pertemuan besok?",
       lastMessageDate: "2023-09-16T15:45:00Z",
       read: true,
     },
     {
       id: 3,
-      name: "New Jeans",
+      name: "Group Chat 3",
       lastSender: "Kim Min Ji",
       lastMessage: "Sudah siap untuk pertemuan besok?",
       lastMessageDate: "2023-09-16T12:45:00Z",
@@ -104,7 +104,7 @@ const Chatbox = () => {
                         <p>{chat.lastMessage}</p>
                       </div>
                       {chat.read === false && (
-                        <div className="w-3 h-3 bg-red-500 rounded-full mr-2 mt-7"></div>
+                        <div className="w-3 h-3 bg-red-500 rounded-full mr-2 mt-6"></div>
                       )}
                     </div>
                   </div>

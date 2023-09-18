@@ -4,27 +4,17 @@ const Chatbox = () => {
   const [groupChats] = useState([
     {
       id: 1,
-      name: "Day 6",
-      lastSender: "Park Hyung Jae",
+      name: "Group Chat 1",
       lastMessage: "Hai, apa kabar?",
       lastMessageDate: "2023-09-17T10:30:00Z",
       read: false,
     },
     {
       id: 2,
-      name: "Twice",
-      lastSender: "Im Na Yeon",
+      name: "Group Chat 2",
       lastMessage: "Sudah siap untuk pertemuan besok?",
       lastMessageDate: "2023-09-16T15:45:00Z",
       read: true,
-    },
-    {
-      id: 3,
-      name: "New Jeans",
-      lastSender: "Kim Min Ji",
-      lastMessage: "Sudah siap untuk pertemuan besok?",
-      lastMessageDate: "2023-09-16T12:45:00Z",
-      read: false,
     },
   ]);
 
@@ -37,21 +27,6 @@ const Chatbox = () => {
   const filteredChats = groupChats.filter((chat) =>
     chat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // Memisahkan chat yang belum dibaca dari chat yang sudah dibaca
-  const unreadChats = filteredChats.filter((chat) => !chat.read);
-  const readChats = filteredChats.filter((chat) => chat.read);
-
-  // Mengurutkan chat berdasarkan tanggal
-  unreadChats.sort(
-    (a, b) => new Date(b.lastMessageDate) - new Date(a.lastMessageDate)
-  );
-  readChats.sort(
-    (a, b) => new Date(b.lastMessageDate) - new Date(a.lastMessageDate)
-  );
-
-  const sortedChats = [...unreadChats, ...readChats];
-
   return (
     <>
       <div className="fixed bottom-[80px] right-20 bg-white w-[734px] border border-gray-300 p-4 rounded-lg shadow-lg">
@@ -82,7 +57,7 @@ const Chatbox = () => {
             />
           </div>
           <ul>
-            {sortedChats.map((chat) => (
+            {groupChats.map((chat) => (
               <li key={chat.id} className="mb-4">
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-xl">
@@ -98,15 +73,10 @@ const Chatbox = () => {
                         {new Date(chat.lastMessageDate).toLocaleTimeString()}
                       </div>
                     </div>
-                    <div className="flex justify-between">
-                      <div className="text-gray-700">
-                        <p className="font-semibold">{chat.lastSender} : </p>
-                        <p>{chat.lastMessage}</p>
-                      </div>
-                      {chat.read === false && (
-                        <div className="w-3 h-3 bg-red-500 rounded-full mr-2 mt-7"></div>
-                      )}
-                    </div>
+                    <div className="text-gray-700">{chat.lastMessage}</div>
+                    {chat.read === false && (
+                      <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                    )}
                   </div>
                 </div>
               </li>

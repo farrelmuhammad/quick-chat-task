@@ -4,27 +4,39 @@ const Chatbox = () => {
   const [groupChats] = useState([
     {
       id: 1,
-      name: "Day 6",
-      lastSender: "Park Hyung Jae",
-      lastMessage: "Hai, apa kabar?",
-      lastMessageDate: "2023-09-17T10:30:00Z",
-      read: false,
+      name: "Group Chat 1",
+      messages: [
+        {
+          sender: "John Doe",
+          text: "Hai, apa kabar?",
+          date: "2023-09-17T10:30:00Z",
+          read: false,
+        },
+      ],
     },
     {
       id: 2,
-      name: "Twice",
-      lastSender: "Im Na Yeon",
-      lastMessage: "Sudah siap untuk pertemuan besok?",
-      lastMessageDate: "2023-09-16T15:45:00Z",
-      read: true,
+      name: "Group Chat 2",
+      messages: [
+        {
+          sender: "Alice Smith",
+          text: "Sudah siap untuk pertemuan besok?",
+          date: "2023-09-16T15:45:00Z",
+          read: true,
+        },
+      ],
     },
     {
       id: 3,
-      name: "New Jeans",
-      lastSender: "Kim Min Ji",
-      lastMessage: "Sudah siap untuk pertemuan besok?",
-      lastMessageDate: "2023-09-16T12:45:00Z",
-      read: false,
+      name: "Group Chat 3",
+      messages: [
+        {
+          sender: "Kim Min Ji",
+          text: "Sudah siap untuk pertemuan besok?",
+          date: "2023-09-16T12:45:00Z",
+          read: false,
+        },
+      ],
     },
   ]);
 
@@ -83,31 +95,26 @@ const Chatbox = () => {
           </div>
           <ul>
             {sortedChats.map((chat) => (
-              <li key={chat.id} className="mb-4">
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-xl">
-                    {chat.name.charAt(0).toUpperCase()}
-                  </div>
-                  <div className="ml-4 flex-grow">
-                    <div className="flex justify-between items-center">
-                      <div className="text-blue-500 hover:underline">
-                        {chat.name}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        {new Date(chat.lastMessageDate).toLocaleDateString()}{" "}
-                        {new Date(chat.lastMessageDate).toLocaleTimeString()}
-                      </div>
-                    </div>
-                    <div className="flex justify-between">
-                      <div className="text-gray-700">
-                        <p className="font-semibold">{chat.lastSender} : </p>
-                        <p>{chat.lastMessage}</p>
-                      </div>
+              <li key={index} className="mb-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-xl">
+                      {chat.sender.charAt(0).toUpperCase()}
                       {chat.read === false && (
-                        <div className="w-3 h-3 bg-red-500 rounded-full mr-2 mt-7"></div>
+                        <span className="w-2 h-2 ml-2 bg-red-500 rounded-full inline-block"></span>
                       )}
                     </div>
+                    <div className="ml-4">
+                      <div className="text-blue-500 hover:underline">
+                        {chat.sender}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {new Date(chat.date).toLocaleDateString()}{" "}
+                        {new Date(chat.date).toLocaleTimeString()}
+                      </div>
+                    </div>
                   </div>
+                  <div className="text-gray-700">{chat.message}</div>
                 </div>
               </li>
             ))}
