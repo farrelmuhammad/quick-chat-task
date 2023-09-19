@@ -29,12 +29,6 @@ const Chatbox = () => {
   ]);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [showChatList, setShowChatList] = useState(true); // State untuk melacak mode tampilan
-
-  const handleChatClick = () => {
-    // Fungsi ini akan dipanggil ketika pengguna mengklik chat di daftar chat
-    setShowChatList(false); // Mengubah mode tampilan menjadi chat room
-  };
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -89,7 +83,7 @@ const Chatbox = () => {
           </div>
           <ul>
             {sortedChats.map((chat) => (
-              <li key={chat.id} className="mb-4 border-b pb-4 mt-4" onClick={handleChatClick}>
+              <li key={chat.id} className="mb-4 border-b pb-4 mt-4">
                 <div className="block hover:bg-gray-100 p-4 rounded-lg cursor-pointer">
                   <div className="flex items-center">
                     <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-xl">

@@ -29,12 +29,6 @@ const Chatbox = () => {
   ]);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [showChatList, setShowChatList] = useState(true); // State untuk melacak mode tampilan
-
-  const handleChatClick = () => {
-    // Fungsi ini akan dipanggil ketika pengguna mengklik chat di daftar chat
-    setShowChatList(false); // Mengubah mode tampilan menjadi chat room
-  };
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -89,31 +83,29 @@ const Chatbox = () => {
           </div>
           <ul>
             {sortedChats.map((chat) => (
-              <li key={chat.id} className="mb-4 border-b pb-4 mt-4" onClick={handleChatClick}>
-                <div className="block hover:bg-gray-100 p-4 rounded-lg cursor-pointer">
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-xl">
-                      {chat.name.charAt(0).toUpperCase()}
+              <li key={chat.id} className="mb-4 border-b pb-4 mt-4">
+                <div className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center text-xl">
+                    {chat.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="ml-4 flex-grow">
+                    <div className="flex justify-between items-center">
+                      <div className="text-blue-500 hover:underline">
+                        {chat.name}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {new Date(chat.lastMessageDate).toLocaleDateString()}{" "}
+                        {new Date(chat.lastMessageDate).toLocaleTimeString()}
+                      </div>
                     </div>
-                    <div className="ml-4 flex-grow">
-                      <div className="flex justify-between items-center">
-                        <div className="text-blue-500 hover:underline">
-                          {chat.name}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                          {new Date(chat.lastMessageDate).toLocaleDateString()}{" "}
-                          {new Date(chat.lastMessageDate).toLocaleTimeString()}
-                        </div>
+                    <div className="flex justify-between">
+                      <div className="text-gray-700">
+                        <p className="font-semibold">{chat.lastSender} : </p>
+                        <p>{chat.lastMessage}</p>
                       </div>
-                      <div className="flex justify-between">
-                        <div className="text-gray-700">
-                          <p className="font-semibold">{chat.lastSender} : </p>
-                          <p>{chat.lastMessage}</p>
-                        </div>
-                        {chat.read === false && (
-                          <div className="w-3 h-3 bg-red-500 rounded-full mr-2 mt-7"></div>
-                        )}
-                      </div>
+                      {chat.read === false && (
+                        <div className="w-3 h-3 bg-red-500 rounded-full mr-2 mt-7"></div>
+                      )}
                     </div>
                   </div>
                 </div>
